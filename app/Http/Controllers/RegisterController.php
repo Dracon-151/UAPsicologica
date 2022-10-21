@@ -83,6 +83,18 @@ class RegisterController extends Controller
         return view('admin.detalles-registro')->with(compact('registro'));
     }
 
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $registro = Register::find($id);
+        return view('admin.editar-registro')->with(compact('registro'));
+    }
+
     /**
      * Update the specified resource in storage.
      *

@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumb')
-	Agregar Registro
+	Editar Registro
 @endsection 
 
 @section('content')
@@ -18,16 +18,17 @@
 				</div><!-- end card header -->
 				<div class="card-body">
 					<div class="live-preview">
-						<form action="{{route('register.store')}}" method="POST">
+						<form action="{{route('register.update', ['id'=>$registro->id])}}" method="POST">
 							@csrf
+							@method('put')
 
 							<div class="row gy-4">
 								<div class="col-xxl-3 col-md-6">
 									<div>
 										<label for="school" class="form-label">Escuela</label>
-										<input maxlength="50" type="text" class="form-control" id="school" name="school">
+										<input maxlength="50" type="text" class="form-control" id="school" name="school" value="{{$registro->school}}">
 										@error('school')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -36,9 +37,9 @@
 								<div class="col-xxl-3 col-md-2">
 									<div>
 										<label for="date" class="form-label">Fecha</label>
-										<input type="date" class="form-control" id="date" name="date">
+										<input type="date" class="form-control" id="date" name="date" value="{{$registro->date}}">
 										@error('date')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -47,9 +48,9 @@
 								<div class="col-xxl-3 col-md-2">
 									<div>
 										<label for="zone" class="form-label">Zona escolar</label>
-										<input maxlength="3" type="text" class="form-control" id="zone" name="zone">
+										<input maxlength="3" type="text" class="form-control" id="zone" name="zone" value="{{$registro->zone}}">
 										@error('zone')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -69,7 +70,7 @@
 											<option value="Taller">Taller</option>																		
 										</select>
 										@error('attention_type')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -88,7 +89,7 @@
 											<option value="6">6to</option>																	
 										</select>
 										@error('grade')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -107,7 +108,7 @@
 											<option value="F">F</option>																	
 										</select>
 										@error('group')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -122,7 +123,7 @@
 											<option value="Vespertino">Vespertino</option>																																
 										</select>
 										@error('time')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -131,9 +132,9 @@
 								<div class="col-xxl-3 col-md-6">
 									<div>
 										<label for="teacher" class="form-label">Docente a cargo</label>
-										<input maxlength="70" type="text" class="form-control" id="teacher" name="teacher">
+										<input maxlength="70" type="text" class="form-control" id="teacher" name="teacher" value="{{$registro->teacher}}">
 										@error('teacher')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -142,9 +143,9 @@
 								<div class="col-xxl-3 col-md-6">
 									<div>
 										<label for="principal" class="form-label">Director</label>
-										<input maxlength="70" type="text" class="form-control" id="principal" name="principal">
+										<input maxlength="70" type="text" class="form-control" id="principal" name="principal" value="{{$registro->principal}}">
 										@error('principal')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -153,15 +154,15 @@
 								<div class="col-xxl-3 col-md-6">
 									<div>
 										<label for="name" class="form-label">Nombre del alumno</label>
-										<input maxlength="70" type="text" class="form-control" id="name" name="name">
+										<input maxlength="70" type="text" class="form-control" id="name" name="name" value="{{$registro->name}}">
 									</div>
 								</div>
 								<div class="col-xxl-3 col-md-6">
 									<div>
 										<label for="location" class="form-label">Localidad</label>
-										<input maxlength="30" type="text" class="form-control" id="location" name="location">
+										<input maxlength="30" type="text" class="form-control" id="location" name="location" value="{{$registro->location}}">
 										@error('location')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -179,7 +180,7 @@
 											<option value="Mulegé">Mulegé</option>																																	
 										</select>
 										@error('municipality')
-											<span class="text-light" role="alert">
+											<span class="text-danger" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
                                         @enderror
@@ -188,15 +189,15 @@
 								<div class="col-xxl-12 col-md-12">
 									<div>
 										<label for="observations" class="form-label">Observaciones</label>
-										<textarea maxlength="1200" rows="10" class="form-control" id="observations" name="observations"></textarea>
+										<textarea maxlength="1200" rows="10" class="form-control" id="observations" name="observations">{{$registro->observations}}</textarea>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				<div class="card-footer">
-					<button type="submit" class="btn btn-success add-btn" id="create-btn">Guardar registro</button>
-					<a href="{{route('register.index')}}" class="btn btn-dark">Cancelar</a>
+					<button type="submit" class="btn btn-success add-btn" id="create-btn">Guardar cambios</button>
+					<a href="{{route('register.show', ['id'=>$registro->id])}}" class="btn btn-dark">Cancelar</a>
 				</div>
 			</form>
 		</div>
@@ -206,5 +207,12 @@
 @endsection 
 
 @section('scripts')
+	<script>
+		document.getElementById("attention_type").value = "<?php echo $registro->attention_type ?>";
+		document.getElementById("grade").value = "<?php echo $registro->grade ?>";
+		document.getElementById("group").value = "<?php echo $registro->group ?>";
+		document.getElementById("time").value = "<?php echo $registro->time ?>";
+		document.getElementById("municipality").value = "<?php echo $registro->municipality ?>";
+	</script>
 	 <script src="{{ asset('libs/prismjs/prism.js') }}"></script>
 @endsection

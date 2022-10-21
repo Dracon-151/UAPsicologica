@@ -31,8 +31,9 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('buscar', [RegisterController::class, 'index'])->name('register.index');
-    Route::get('registros/{id}', [RegisterController::class, 'show'])->name('register.details');
     Route::get('registrar', [RegisterController::class, 'create'])->name('register.create');
     Route::put('registros/{id}', [RegisterController::class, 'update'])->name('register.update');
+    Route::get('registros/{id}/editar', [RegisterController::class, 'edit'])->name('register.edit');
+    Route::get('registros/{id}', [RegisterController::class, 'show'])->name('register.show');
     Route::post('registros', [RegisterController::class, 'store'])->name('register.store');
 });

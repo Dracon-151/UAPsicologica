@@ -58,7 +58,7 @@
 									<td class="location">{{$registro->location}}</td>
 									<td class="municipality">{{$registro->municipality}}</td>
 									<td class="details">
-										<a href="{{route('register.details', ['id'=>$registro->id])}}" class="btn btn-sm btn-info">Detalles</a>
+										<a href="{{route('register.show', ['id'=>$registro->id])}}" class="btn btn-sm btn-info">Detalles</a>
 									</td>
 								</tr>
 								@endforeach
