@@ -1,10 +1,8 @@
 <!doctype html>
-<html lang="es" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+<html lang="en" data-layout="horizontal" data-layout-style="" data-layout-position="fixed" data-topbar="light">
 
 <head>
-
     @include('layouts.head') 
-
 </head>
 
 <body>
@@ -44,9 +42,7 @@
     </div>
     <!-- END layout-wrapper -->
 
-
     @include('layouts.scripts')
-    
 </body>
 
 </html>

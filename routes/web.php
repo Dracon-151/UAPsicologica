@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,23 +22,17 @@ Route::get('login', function () {
     return redirect('/');
 })->name('login');
 
-Route::get('/login/new-device', function () {
-    return view('welcome');
-})->name('login.new.device')->middleware('guest');
-
-Route::get('register', function () {
-    return redirect('/');
-});
-
-Route::get('reset-password/{token}/{email}', function () {
-    return view('reset-password');
-})->name('password.reset');
-
 Route::middleware(['auth'])->group(function () {
 
     Route::group(['middleware' => ['role:Administrador']], function () {
 
-        Route::get('home', [HomeController::class, 'index'])->name('home');
+        Route::get('buscar', [RegisterController::class, 'index'])->name('home');
     
     });
+
+    Route::get('buscar', [RegisterController::class, 'index'])->name('register.index');
+    Route::get('registros/{id}', [RegisterController::class, 'show'])->name('register.details');
+    Route::get('registrar', [RegisterController::class, 'create'])->name('register.create');
+    Route::put('registros/{id}', [RegisterController::class, 'update'])->name('register.update');
+    Route::post('registros', [RegisterController::class, 'store'])->name('register.store');
 });

@@ -21,24 +21,24 @@ class AdminRolePermissionsSeeder extends Seeder
 
         //usuarios
         Permission::create([
-            'name' => 'users.get'
+            'name' => 'register.get'
         ]);
         Permission::create([
-            'name' => 'users.edit'
+            'name' => 'register.edit'
         ]);
         Permission::create([
-            'name' => 'users.add'
+            'name' => 'register.add'
         ]);
         Permission::create([
-            'name' => 'users.delete'
+            'name' => 'register.delete'
         ]);
 
         //Administrador        
         $administrador->givePermissionTo([
-            'users.get',
-            'users.edit',
-            'users.add',
-            'users.delete',
+            'register.get',
+            'register.edit',
+            'register.add',
+            'register.delete',
         ]);
 
         //Asignando permisos a usuario admin
