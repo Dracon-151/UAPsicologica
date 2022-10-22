@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('municipality');
             $table->string('principal', 70);
             $table->string('teacher', 70);
-            $table->string('name', 70);
+            $table->string('name', 70)->default('Sin alumno');
             $table->string('attention_type');
-            $table->string('observations', 1200);
+            $table->string('observations', 1200)->nullable(true);
             $table->timestamps();
             $table->softDeletes();
         });

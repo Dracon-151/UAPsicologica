@@ -27,12 +27,6 @@
             <div class="d-flex align-items-center">
 
                 <div class="ms-1 header-item d-none d-sm-flex">
-                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none" data-toggle="fullscreen">
-                        <i class='bx bx-fullscreen fs-22'></i>
-                    </button>
-                </div>
-
-                <div class="ms-1 header-item d-none d-sm-flex">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle light-dark-mode shadow-none">
                         <i class='bx bx-moon fs-22'></i>
                     </button>
@@ -44,7 +38,7 @@
                             <img class="rounded-circle header-profile-user" src="{{ asset('images/users/user-dummy-img.jpg') }}" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{Auth::user()->name}}</span>
-                                <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{{Auth::user()->email}}</span>
+                                <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{{Auth::user()->getRoleNames()[0]}}</span>
                             </span>
                         </span>
                     </button>

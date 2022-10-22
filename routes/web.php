@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('login', function () {
     return redirect('/');
 })->name('login');
-
+ 
 Route::middleware(['auth'])->group(function () {
 
     Route::group(['middleware' => ['role:Administrador']], function () {
@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('buscar', [RegisterController::class, 'index'])->name('register.index');
     Route::get('registrar', [RegisterController::class, 'create'])->name('register.create');
     Route::put('registros/{id}', [RegisterController::class, 'update'])->name('register.update');
+    Route::delete('registros/{id}', [RegisterController::class, 'destroy'])->name('register.destroy');
     Route::get('registros/{id}/editar', [RegisterController::class, 'edit'])->name('register.edit');
     Route::get('registros/{id}', [RegisterController::class, 'show'])->name('register.show');
     Route::post('registros', [RegisterController::class, 'store'])->name('register.store');

@@ -20,7 +20,10 @@
     <script src="{{ asset('libs/feather-icons/feather.min.js') }}"></script>
     <script src="{{ asset('js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
     <script src="{{ asset('js/plugins.js') }}"></script>
-
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/toastify-js'></script>
+    <script type='text/javascript' src='{{ asset('libs/choices.js/public/assets/scripts/choices.min.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('libs/flatpickr/flatpickr.min.js') }}'></script>
+    
     @yield('scripts')
 
     <!-- App js -->

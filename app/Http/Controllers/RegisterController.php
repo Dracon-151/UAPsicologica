@@ -47,14 +47,13 @@ class RegisterController extends Controller
             'teacher' => ['required'],
             'attention_type' => ['required'],
             'municipality' => ['required'],
-            'observations' => ['required'],
             'location' => ['required'],
         ]);
         
         $registro = new Register;
         $registro->date = $request->date;
         $registro->zone = $request->zone;
-        $registro->name = $request->name;
+        if(isset($request->name))$registro->name = $request->name;
         $registro->teacher = $request->teacher;
         $registro->principal = $request->principal;
         $registro->school = $request->school;
@@ -63,12 +62,12 @@ class RegisterController extends Controller
         $registro->municipality = $request->municipality;
         $registro->location = $request->location;
         $registro->time = $request->time;
-        $registro->observations = $request->observations;
+        if(isset($request->observations))$registro->observations = $request->observations;
         $registro->attention_type = $request->attention_type;
 
         $registro->save();
 
-        return redirect()->route('register.details', $registro->id)->with('success');
+        return redirect(route('register.show', $registro->id))->with('success');
     }
 
     /**
@@ -116,7 +115,6 @@ class RegisterController extends Controller
             'teacher' => ['required'],
             'attention_type' => ['required'],
             'municipality' => ['required'],
-            'observations' => ['required'],
             'location' => ['required'],
         ]);
         
@@ -124,7 +122,7 @@ class RegisterController extends Controller
 
         $registro->update($request->all());
 
-        return redirect()->back()->with('success');
+        return redirect(route('register.show', $registro->id))->with('success');
     }
 
     /**
@@ -135,6 +133,9 @@ class RegisterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $registro = Register::find($id);
+
+        $registro->delete(); 
+        return redirect(route('register.index'))->with('success');
     }
 }

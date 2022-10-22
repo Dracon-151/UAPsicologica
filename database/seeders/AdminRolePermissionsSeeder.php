@@ -17,7 +17,8 @@ class AdminRolePermissionsSeeder extends Seeder
      */
     public function run()
     {
-        $administrador = Role::create(['name' => 'Administrador']);
+        $admin = Role::create(['name' => 'Administrador']);
+        $psicologa = Role::create(['name' => 'Psicologo/a']);
 
         //usuarios
         Permission::create([
@@ -33,17 +34,32 @@ class AdminRolePermissionsSeeder extends Seeder
             'name' => 'register.delete'
         ]);
 
-        //Administrador        
-        $administrador->givePermissionTo([
+        $psicologa->givePermissionTo([
+            'register.get',
+            'register.edit',
+            'register.add',
+            //'register.delete',
+        ]);
+
+        $admin->givePermissionTo([
             'register.get',
             'register.edit',
             'register.add',
             'register.delete',
         ]);
 
-        //Asignando permisos a usuario admin
         $user = User::where('id', 1)->firstOrFail();
         $user->role_id = 1;
+        $user->assignRole($user->role_id);
+        $user->save();
+
+        $user = User::where('id', 2)->firstOrFail();
+        $user->role_id = 2;
+        $user->assignRole($user->role_id);
+        $user->save();
+
+        $user = User::where('id', 3)->firstOrFail();
+        $user->role_id = 2;
         $user->assignRole($user->role_id);
         $user->save();
     }
