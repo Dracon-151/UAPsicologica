@@ -37,4 +37,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('registros/{id}/editar', [RegisterController::class, 'edit'])->name('register.edit');
     Route::get('registros/{id}', [RegisterController::class, 'show'])->name('register.show');
     Route::post('registros', [RegisterController::class, 'store'])->name('register.store');
+    Route::post('registros/pdf', [RegisterController::class, 'createPdf'])->name('register.pdf');
 });

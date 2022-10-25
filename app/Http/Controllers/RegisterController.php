@@ -138,4 +138,21 @@ class RegisterController extends Controller
         $registro->delete(); 
         return redirect(route('register.index'))->with('success');
     }
+
+    public function createPdf(Request $request)
+    {
+        $request->validate([
+            'date' => ['required'],
+            'folio' => ['required'],
+            'ccp' => ['required'],
+            'sender-name' => ['required'],
+            'sender-job' => ['required'],
+            'recipient-name' => ['required'],
+            'recipient-job' => ['required'],
+        ]);
+        
+        return $request;
+
+        return redirect()->back()->with('success');
+    }
 }

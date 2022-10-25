@@ -63,8 +63,8 @@
 				<form action={{route('register.destroy', $registro->id)}} method="POST">
 					@csrf
 					@method('delete')
+					<button id="modalBtn" type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#myModal">Generar PDF</button>
 					<a href="{{route('register.edit', ['id'=>$registro->id])}}" class="btn btn-info add-btn">Editar</a>
-					<a href="{{route('register.edit', ['id'=>$registro->id])}}" class="btn btn-success">Generar pdf</a>
 					@if(Auth::user()->can('register.delete'))
 						<button type="submit" class="btn btn-danger add-btn">Eliminar</button>
 					@endif
@@ -72,6 +72,109 @@
 			</div>
 		</div>
 	</div>
-	<!--end col-->
+</div>
+
+<!-- Default Modals -->
+<div id="myModal" tabindex="-1" aria-labelledby="myModalLabel" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+			<form action="{{ route('register.pdf') }}" method="POST">
+				@csrf
+				<div class="modal-header">
+					<h5 class="modal-title" id="myModalLabel">Generar PDF</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="form-group col-6">
+							<label class="col-form-label">Folio del oficio</label>
+							<input placeholder="Folio" maxlength="20" type="text" class="form-control" name="folio"
+							value="{{old('folio', '')}}">
+							@error('folio')
+								<span class="text-danger" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+						<div class="form-group col-6">
+							<label class="col-form-label">Fecha del oficio</label>
+							<input type="date" class="form-control" name="date"
+							value="{{old('date', $registro->date)}}">
+							@error('date')
+								<span class="text-danger" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+						<div class="form-group col-12">
+							<label class="col-form-label">Nombre del destinatario</label>
+							<input placeholder="Nombre" maxlength="70" type="text" class="form-control" name="recipient-name"
+							value="{{old('recipient-name', '')}}">
+							@error('recipient-name')
+								<span class="text-danger" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+						<div class="form-group col-12">
+							<label class="col-form-label">Cargo del destinatario</label>
+							<input placeholder="Cargo" maxlength="70" type="text" class="form-control" name="recipient-job"
+							value="{{old('recipient-job', '')}}">
+							@error('recipient-job')
+								<span class="text-danger" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+						<div class="form-group col-12">
+							<label class="col-form-label">Nombre del remitente</label>
+							<input placeholder="Nombre" maxlength="70" type="text" class="form-control" name="sender-name"
+							value="{{old('sender-name', '')}}">
+							@error('sender-name')
+								<span class="text-danger" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+						<div class="form-group col-12">
+							<label class="col-form-label">Cargo del remitente</label>
+							<input placeholder="Cargo" maxlength="70" type="text" class="form-control" name="sender-job"
+							value="{{old('sender-job', '')}}">
+							@error('sender-job')
+								<span class="text-danger" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+						<div class="form-group col-12">
+							<label class="col-form-label">C.C.P.</label>
+							<input maxlength="20" type="text" class="form-control" name="ccp"
+							value="{{old('ccp', 'Archivo')}}">
+							@error('ccp')
+								<span class="text-danger" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+					</div>
+					@if(isset($registro->observations))
+						<input type="hidden" name="observations" value="{{$registro->observations}}">
+					@endif
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+					<button type="submit" class="btn btn-success">Generar</button>
+				</div>
+			</form>
+        </div>
+    </div>
 </div>
 @endsection 
+
+@section('scripts')
+	@if(old('observations') !== null)
+		<script type="text/javascript">
+			document.getElementById("modalBtn").click();
+		</script>
+	@endif
+@endsection
