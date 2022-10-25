@@ -67,7 +67,7 @@ class RegisterController extends Controller
 
         $registro->save();
 
-        return redirect(route('register.show', $registro->id))->with('success');
+        return redirect(route('register.show', $registro->id))->with('success', 'ok');
     }
 
     /**
@@ -122,7 +122,7 @@ class RegisterController extends Controller
 
         $registro->update($request->all());
 
-        return redirect(route('register.show', $registro->id))->with('success');
+        return redirect(route('register.show', $registro->id))->with('success', 'ok');
     }
 
     /**
@@ -136,7 +136,7 @@ class RegisterController extends Controller
         $registro = Register::find($id);
 
         $registro->delete(); 
-        return redirect(route('register.index'))->with('success');
+        return redirect(route('register.index'))->with('success', 'ok');
     }
 
     public function createPdf(Request $request)
