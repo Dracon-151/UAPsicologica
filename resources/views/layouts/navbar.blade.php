@@ -4,33 +4,27 @@
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box horizontal-logo">
-                    <a href="#" class="logo logo-dark">
+                    <a href="{{route('register.index')}}" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="{{ asset('images/logo-sm.png') }}" alt="" height="50">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('images/logo-dark.png') }}" alt="" height="50">
+                            <img src="{{ asset('images/logo-big.png') }}" alt="" height="50">
                         </span>
                     </a>
 
-                    <a href="#" class="logo logo-light">
+                    <a href="{{route('register.index')}}" class="logo logo-light">
                         <span class="logo-sm">
                             <img src="{{ asset('images/logo-sm.png') }}" alt="" height="50">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('images/logo-light.png') }}" alt="" height="50">
+                            <img src="{{ asset('images/logo-big.png') }}" alt="" height="50">
                         </span>
                     </a>
                 </div>
             </div>
 
             <div class="d-flex align-items-center">
-
-                <div class="ms-1 header-item d-none d-sm-flex">
-                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle light-dark-mode shadow-none">
-                        <i class='bx bx-moon fs-22'></i>
-                    </button>
-                </div>
 
                 <div class="dropdown ms-sm-3 header-item topbar-user">
                     <button type="button" class="btn shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -56,7 +56,7 @@
 				</div>
 				@if(isset($registro->observations))
 				<h5 class="card-title mb-3">Observaciones</h5>
-					<p class="text-muted">{{$registro->observations}}</p>	
+					<p class="text-muted" style="white-space: pre-line; text-align: justify;">{{$registro->observations}}</p>	
 				@endif
 			</div><!-- end card body -->
 			<div class="card-footer">
@@ -108,9 +108,9 @@
 						</div>
 						<div class="form-group col-12">
 							<label class="col-form-label">Nombre del destinatario</label>
-							<input placeholder="Nombre" maxlength="70" type="text" class="form-control" name="recipient-name"
-							value="{{old('recipient-name', '')}}">
-							@error('recipient-name')
+							<input placeholder="Nombre" maxlength="70" type="text" class="form-control" name="recipient_name"
+							value="{{old('recipient_name', '')}}">
+							@error('recipient_name')
 								<span class="text-danger" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>
@@ -118,9 +118,9 @@
 						</div>
 						<div class="form-group col-12">
 							<label class="col-form-label">Cargo del destinatario</label>
-							<input placeholder="Cargo" maxlength="70" type="text" class="form-control" name="recipient-job"
-							value="{{old('recipient-job', '')}}">
-							@error('recipient-job')
+							<input placeholder="Cargo" maxlength="70" type="text" class="form-control" name="recipient_job"
+							value="{{old('recipient_job', '')}}">
+							@error('recipient_job')
 								<span class="text-danger" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>
@@ -128,9 +128,9 @@
 						</div>
 						<div class="form-group col-12">
 							<label class="col-form-label">Nombre del remitente</label>
-							<input placeholder="Nombre" maxlength="70" type="text" class="form-control" name="sender-name"
-							value="{{old('sender-name', '')}}">
-							@error('sender-name')
+							<input placeholder="Nombre" maxlength="70" type="text" class="form-control" name="sender_name"
+							value="{{old('sender_name', '')}}">
+							@error('sender_name')
 								<span class="text-danger" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>
@@ -138,9 +138,9 @@
 						</div>
 						<div class="form-group col-12">
 							<label class="col-form-label">Cargo del remitente</label>
-							<input placeholder="Cargo" maxlength="70" type="text" class="form-control" name="sender-job"
-							value="{{old('sender-job', '')}}">
-							@error('sender-job')
+							<input placeholder="Cargo" maxlength="70" type="text" class="form-control" name="sender_job"
+							value="{{old('sender_job', '')}}">
+							@error('sender_job')
 								<span class="text-danger" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>
@@ -159,6 +159,9 @@
 					</div>
 					@if(isset($registro->observations))
 						<input type="hidden" name="observations" value="{{$registro->observations}}">
+					@endif
+					@if(isset($registro->attention_type))
+						<input type="hidden" name="attention_type" value="{{$registro->attention_type}}">
 					@endif
 				</div>
 				<div class="modal-footer">

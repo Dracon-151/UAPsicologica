@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Register;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use PDF;
 
 class RegisterController extends Controller
 {
@@ -144,15 +146,26 @@ class RegisterController extends Controller
         $request->validate([
             'date' => ['required'],
             'folio' => ['required'],
+            'attention_type' => ['required'],
             'ccp' => ['required'],
-            'sender-name' => ['required'],
-            'sender-job' => ['required'],
-            'recipient-name' => ['required'],
-            'recipient-job' => ['required'],
+            'sender_name' => ['required'],
+            'sender_job' => ['required'],
+            'recipient_name' => ['required'],
+            'recipient_job' => ['required'],
         ]);
         
-        return $request;
+        $register = $request;
 
-        return redirect()->back()->with('success');
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+        $fecha = Carbon::parse($register->date);
+        $mes = $meses[($fecha->format('n')) - 1];
+        $register->date = $fecha->format('d') . ' de ' . $mes . ' de ' . $fecha->format('Y');
+        $register->sender_name = strtoupper($request->sender_name);
+        $register->sender_job = strtoupper($request->sender_job);
+        $register->recipient_name = strtoupper($request->recipient_name);
+        $register->recipient_job = strtoupper($request->recipient_job);
+
+        $pdf = PDF::loadView('pdf.register', compact('register'));
+        return $pdf->download('Oficio-'.$request->folio.'.pdf');
     }
 }

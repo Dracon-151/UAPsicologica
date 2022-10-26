@@ -189,7 +189,7 @@
 								<div class="col-xxl-12 col-md-12">
 									<div>
 										<label for="observations" class="form-label">Observaciones</label>
-										<textarea maxlength="1200" rows="10" class="form-control" id="observations" name="observations">{{$registro->observations}}</textarea>
+										<textarea maxlength="1180" rows="10" class="form-control" id="observations" name="observations">{{$registro->observations}}</textarea>
 									</div>
 								</div>
 							</div>
